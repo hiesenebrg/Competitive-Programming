@@ -1,0 +1,30 @@
+#include <bits/stdc++.h> 
+
+int knapsackHelper(vector<int> weight, vector<int> value, int n, int maxWeight,vector<vector<int>> &dp) 
+{
+	if(n==0){
+		if(weight[0]<= maxWeight) return value[0];
+		else return 0;
+	}
+	if( dp[n][maxWeight]!=-1) return  dp[n][maxWeight];
+	int notPick  =  knapsackHelper(weight,value,n-1,maxWeight,dp);
+	int pick = INT_MIN;
+	if(weight[n]<=maxWeight) pick = value[n] +  knapsackHelper(weight,value,n-1,maxWeight-weight[n],dp);
+	return dp[n][maxWeight] =  max(pick,notPick);
+}
+int knapsack(vector<int> weight, vector<int> value, int n, int maxWeight) 
+{
+	vector<vector<int>>dp(n,vector<int>(maxWeight+1,-1));
+	return knapsackHelper(weight,value,n-1,maxWeight,dp);
+	for( int w=weight[0];w<=maxWeight;w++) dp[0][w] = value[w];
+	for( int i=1;i<n;i++){
+		for( int j=0;j<=maxWeight;j++){
+	
+		int notPick  =  dp[i-1][j];
+		int pick = INT_MIN;
+		if(weight[n]<=maxWeight) pick = value[n] + dp[i-1][j-value[i]];
+		dp[i][j] =  max(pick,notPick);
+		}
+	}	
+	return dp[n-1][maxWeight];
+}
