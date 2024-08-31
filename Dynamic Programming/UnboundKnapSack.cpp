@@ -1,5 +1,7 @@
 
-#include <bits/stdc++.h> 
+#include <iostream>
+#include <vector>
+using namespace std;
 
 int knapsackHelper(vector<int> weight, vector<int> value, int n, int maxWeight,vector<vector<int>> &dp) 
 {

@@ -1,4 +1,6 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+using namespace std;
 
 long minimumElementsHelper(int *denominations, int x, int n,vector<vector<long>> &dp)
 {

@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+using namespace std;
 int ninjaTrainingHelper(int n, vector<vector<int>> &points, int index, int task,vector<vector<int>> &dp)
 {
   if(n==0){
