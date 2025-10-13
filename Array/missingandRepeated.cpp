@@ -50,3 +50,31 @@ vector<int> findRepeatingAndMissingNumbers(vector<int> nums) {
 
     return {repeating, missing};
 }
+
+
+//alternate method
+#include <iostream>
+#include <vector>
+
+void findMissingAndRepeating(const std::vector<int>& arr) {
+    int n = arr.size();
+    long long S = n * (n + 1) / 2;
+    long long P = n * (n + 1) * (2 * n + 1) / 6;
+
+    long long S1 = 0, P1 = 0;
+    for (int num : arr) {
+        S1 += num;
+        P1 += (long long)num * num;
+    }
+
+    long long diff = S1 - S;           // y - x
+    long long squareDiff = P1 - P;     // y² - x²
+
+    long long sum = squareDiff / diff; // y + x
+
+    int y = (diff + sum) / 2;
+    int x = y - diff;
+
+    std::cout << "Repeated = " << y << ", Missing = " << x << std::endl;
+}
+
